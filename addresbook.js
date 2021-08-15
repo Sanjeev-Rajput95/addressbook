@@ -36,36 +36,44 @@ function edit(name) {
     let value = prompt("Please enter the value: ")
     let ram = false;
     for (let i = 0; i < addressBook.length; i++) {
-        if(name == addressBook[i].fname) {
+        if (name == addressBook[i].fname) {
             ram = true;
-            if(choice == 1) {
+            if (choice == 1) {
                 addressBook[i].address = value;
             }
-            if(choice == 2) {
+            if (choice == 2) {
                 addressBook[i].city = value;
             }
-            if(choice == 3) {
+            if (choice == 3) {
                 addressBook[i].state = value;
             }
-            if(choice == 4) {
+            if (choice == 4) {
                 addressBook[i].zip = value;
             }
-            if(choice == 5) {
+            if (choice == 5) {
                 addressBook[i].phone = value;
             }
-            
+
         }
     }
-    if(ram == false) {
+    if (ram == false) {
         console.log(" person does not match so coorect person name: ");
     }
-       
+
+}
+function deletePerson(name) {
+    for (let i = 0; i < addressBook.length; i++) {
+        if(name == addressBook[i].fname) {
+            addressBook.splice(i,0);
+        }
+    }
 }
 while (exit == true) {
     console.log(" Please enter 1  for adding new person");
     console.log(" Please enter  2  for printing book");
     console.log(" Please 3 for editing details");
-    console.log(" Please 4 exit option for exiting");
+    console.log(" Please 4 for deleting details");
+    console.log(" Please 5 exit option for exiting");
     let option = prompt("Please select one option for addperson: ");
 
     if (option == 1) {
@@ -78,8 +86,11 @@ while (exit == true) {
         let name = prompt("Please Enter first name whose details  you want to edit: ");
         edit(name);
     }
-
-    if (option == 4) {
+    if(option == 4) {
+        let name = prompt("Please Enter first name whose details  you want to delete: ");
+        deletePerson(name);
+    }
+    if (option == 5) {
         exit = false;
     }
 }

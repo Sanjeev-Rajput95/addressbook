@@ -1,9 +1,9 @@
 
 var prompt = require('prompt-sync')();
-let person = {}
-let addressOf = [];
+let addressBook = [];
 exit = true;
-function addPerson () {
+function addPerson() {
+    let person = {};
     let fname = prompt("Please enter first name: ");
     let lname = prompt("Please enter the last name: ");
     let address = prompt("Please enter address: ");
@@ -18,28 +18,68 @@ function addPerson () {
     person.state = state;
     person.zip = zip;
     person.phone = phone;
-    addressOf.push(person);
+    addressBook.push(person);
 }
 
 
 // add new person to address book
-function print () {
-    console.log(addressOf);
+function print() {
+    console.log(addressBook);
+}
+function edit(name) {
+    console.log("please enter 1 if you want change the address person: ");
+    console.log("please enter 2 if you want change the phone person");
+    console.log("please enter 3 if you want change the zip person");
+    console.log("please enter 4 if you want change the city person");
+    console.log("please enter 5 if you want change the state person");
+    let choice = prompt("Please select the one choice: ");
+    let value = prompt("Please enter the value: ")
+    let ram = false;
+    for (let i = 0; i < addressBook.length; i++) {
+        if(name == addressBook[i].fname) {
+            ram = true;
+            if(choice == 1) {
+                addressBook[i].address = value;
+            }
+            if(choice == 2) {
+                addressBook[i].city = value;
+            }
+            if(choice == 3) {
+                addressBook[i].state = value;
+            }
+            if(choice == 4) {
+                addressBook[i].zip = value;
+            }
+            if(choice == 5) {
+                addressBook[i].phone = value;
+            }
+            
+        }
     }
-
-while(exit == true) {
-    console.log("Please Enter the first option for adding");
-    console.log("Please Enter the second option for adding");
-    console.log("Please Enter the exit option for adding");
-    let option = prompt("Please select one option for addperson");
-
-    if(option == 1) {
-        addPerson (); 
+    if(ram == false) {
+        console.log(" person does not match so coorect person name: ");
     }
-    if(option == 2) {
+       
+}
+while (exit == true) {
+    console.log(" Please enter 1  for adding new person");
+    console.log(" Please enter  2  for printing book");
+    console.log(" Please 3 for editing details");
+    console.log(" Please 4 exit option for exiting");
+    let option = prompt("Please select one option for addperson: ");
+
+    if (option == 1) {
+        addPerson();
+    }
+    if (option == 2) {
         print();
     }
-    if( option == 3) {
+    if (option == 3) {
+        let name = prompt("Please Enter first name whose details  you want to edit: ");
+        edit(name);
+    }
+
+    if (option == 4) {
         exit = false;
     }
 }

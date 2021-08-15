@@ -2,7 +2,7 @@
 var prompt = require('prompt-sync')();
 let person = {}
 let addressOf = [];
-addPerson();
+exit = true;
 function addPerson () {
     let fname = prompt("Please enter first name: ");
     let lname = prompt("Please enter the last name: ");
@@ -19,6 +19,28 @@ function addPerson () {
     person.zip = zip;
     person.phone = phone;
     addressOf.push(person);
+}
+
+
+// add new person to address book
+function print () {
     console.log(addressOf);
+    }
+
+while(exit == true) {
+    console.log("Please Enter the first option for adding");
+    console.log("Please Enter the second option for adding");
+    console.log("Please Enter the exit option for adding");
+    let option = prompt("Please select one option for addperson");
+
+    if(option == 1) {
+        addPerson (); 
+    }
+    if(option == 2) {
+        print();
+    }
+    if( option == 3) {
+        exit = false;
+    }
 }
 

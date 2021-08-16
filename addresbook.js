@@ -4,21 +4,36 @@ let addressBook = [];
 exit = true;
 function addPerson() {
     let person = {};
+    let flag = true;
     let fname = prompt("Please enter first name: ");
-    let lname = prompt("Please enter the last name: ");
-    let address = prompt("Please enter address: ");
-    let city = prompt("Please enter city: ");
-    let state = prompt("Please enter the state: ");
-    let zip = prompt("Please enter the zip: ");
-    let phone = prompt("Please enter phone: ");
-    person.fname = fname;
-    person.lname = lname;
-    person.address = address;
-    person.city = city;
-    person.state = state;
-    person.zip = zip;
-    person.phone = phone;
-    addressBook.push(person);
+    for (let i = 0; i < addressBook.length; i++) {
+        if (fname == addressBook[i].fname) {
+            flag = false;
+        }
+    }
+    if (flag == true) {
+        let lname = prompt("Please enter the last name: ");
+        let address = prompt("Please enter address: ");
+        let city = prompt("Please enter city: ");
+        let state = prompt("Please enter the state: ");
+        let zip = prompt("Please enter the zip: ");
+        let phone = prompt("Please enter phone: ");
+        person.fname = fname;
+        person.lname = lname;
+        person.address = address;
+        person.city = city;
+        person.state = state;
+        person.zip = zip;
+        person.phone = phone;
+        addressBook.push(person);
+    }
+    else {
+        console.log("Please enter other name person already existing in the array ");
+    }
+
+
+
+
 }
 
 
@@ -34,10 +49,10 @@ function edit(name) {
     console.log("please enter 5 if you want change the state person");
     let choice = prompt("Please select the one choice: ");
     let value = prompt("Please enter the value: ")
-    let ram = false;
+    let flag = false;
     for (let i = 0; i < addressBook.length; i++) {
         if (name == addressBook[i].fname) {
-            ram = true;
+            flag = true;
             if (choice == 1) {
                 addressBook[i].address = value;
             }
@@ -56,18 +71,22 @@ function edit(name) {
 
         }
     }
-    if (ram == false) {
+    if (flag == false) {
         console.log(" person does not match so coorect person name: ");
     }
 
 }
 function deletePerson(name) {
     for (let i = 0; i < addressBook.length; i++) {
-        if(name == addressBook[i].fname) {
-            addressBook.splice(i,0);
+        if (name == addressBook[i].fname) {
+            addressBook.splice(i, 1);
         }
     }
 }
+
+// function duplicate (name) {
+//  addressBook.splice(addressBook.indexOf(),1);
+// }
 while (exit == true) {
     console.log(" Please enter 1  for adding new person");
     console.log(" Please enter  2  for printing book");
@@ -86,7 +105,7 @@ while (exit == true) {
         let name = prompt("Please Enter first name whose details  you want to edit: ");
         edit(name);
     }
-    if(option == 4) {
+    if (option == 4) {
         let name = prompt("Please Enter first name whose details  you want to delete: ");
         deletePerson(name);
     }

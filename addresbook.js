@@ -31,9 +31,6 @@ function addPerson() {
         console.log("Please enter other name person already existing in the array ");
     }
 
-
-
-
 }
 
 
@@ -84,6 +81,20 @@ function deletePerson(name) {
     }
 }
 
+function alphabeticalSort(name) {
+    addressBook.sort( (a,b) => {
+        if(a.fname.toLowerCase() < b.fname.toLowerCase()) {
+            return -1;
+        }
+        if(a.fname.toLowerCase() > b.fname.toLowerCase()) {
+            return 1;
+        }
+        return 0; 
+    });
+    console.log(addressBook);
+    
+}
+
 // function duplicate (name) {
 //  addressBook.splice(addressBook.indexOf(),1);
 // }
@@ -92,7 +103,8 @@ while (exit == true) {
     console.log(" Please enter  2  for printing book");
     console.log(" Please 3 for editing details");
     console.log(" Please 4 for deleting details");
-    console.log(" Please 5 exit option for exiting");
+    console.log("Please enter 5 for sorting by person name");
+    console.log(" Please 6 exit option for exiting");
     let option = prompt("Please select one option for addperson: ");
 
     if (option == 1) {
@@ -109,7 +121,12 @@ while (exit == true) {
         let name = prompt("Please Enter first name whose details  you want to delete: ");
         deletePerson(name);
     }
-    if (option == 5) {
+    if(option == 5) {
+        let name;
+        alphabeticalSort(name);
+      
+    }
+    if (option == 6) {
         exit = false;
     }
 }
